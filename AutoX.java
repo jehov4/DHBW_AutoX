@@ -24,21 +24,43 @@ public class AutoX {
     private GPS[] gps;
     private Camera[] camera;
     private Lidar[] lidar;
+    private UltrasonicSensor[] ultrasonic;
 
     public AutoX(Builder builder){
-        this.chassis = builder.chassis;
-        this.IElectricEngine = builder.iElectricEngine;
-        this.ledHeadlight = builder.ledHeadlight;
-        this.breakLight = builder.breakLight;
-        this.leftIndicator = builder.leftIndicator;
-        this.rightIndicator = builder.rightIndicator;
-        this.door = builder.door;
-        this.seat = builder.seat;
-        this.wheel = builder.wheel;
-        this.break_ = builder.break_;
-        this.gps = builder.gps;
-        this.camera = builder.camera;
-        this.lidar = builder.lidar;
+            this.chassis = builder.chassis;
+            this.IElectricEngine = builder.iElectricEngine;
+            this.ledHeadlight = builder.ledHeadlight;
+            this.breakLight = builder.breakLight;
+            this.leftIndicator = builder.leftIndicator;
+            this.rightIndicator = builder.rightIndicator;
+            this.door = builder.door;
+            this.seat = builder.seat;
+            this.wheel = builder.wheel;
+            this.break_ = builder.break_;
+            this.gps = builder.gps;
+            this.camera = builder.camera;
+            this.lidar = builder.lidar;
+            this.ultrasonic = builder.ultrasonic;
+    }
+
+    public static AutoX BuildAutoX(){
+
+        return new Builder()
+                .Chassis(Configuration.instance.ChassisCount)
+                .ElectricEngine(Configuration.instance.EngineCount)
+                .LEDHeadlight(Configuration.instance.HeadLightsCount)
+                .BreakLight(Configuration.instance.BreakLightsCount)
+                .LeftIndicator(Configuration.instance.LeftIndicatorCount)
+                .RightIndicator(Configuration.instance.RightIndicatorCount)
+                .Door(Configuration.instance.DoorCount)
+                .Seat(Configuration.instance.SeatCount)
+                .Wheel(Configuration.instance.WheelCount)
+                .Break(Configuration.instance.BreakCount)
+                .GPS(Configuration.instance.GPSCount)
+                .Lidar(Configuration.instance.LidarCount)
+                .Ultrasonic(Configuration.instance.UltrasonicSensorCount)
+                .build();
+
     }
 
     public static class Builder {
@@ -67,11 +89,11 @@ public class AutoX {
             }
             return this;
         }
-        public Builder ElectricMotor(int amount){
+        public Builder ElectricEngine(int amount){
             iElectricEngine = new IElectricEngine[amount];
             for (; amount > 0; amount--){
 
-                iElectricEngine[amount] = Configuration.valueOf("motorVariant").equals(MotorVariant.EngineX) ? new EngineX(contorlUnit) : new EngineNG(contorlUnit);
+                iElectricEngine[amount] = Configuration.instance.motorVariant.equals(MotorVariant.EngineX) ? new EngineX(contorlUnit) : new EngineNG(contorlUnit);
                 contorlUnit.addSubscriber(iElectricEngine[amount]);
             }
             return this;

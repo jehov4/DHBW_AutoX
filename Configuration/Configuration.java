@@ -12,7 +12,8 @@ public enum Configuration {
     public int EngineCount = 2;
     public int HeadLightsCount = 2;
     public int BreakLightsCount = 2;
-    public int IndicatorCount = 4;
+    public int LeftIndicatorCount = 2;
+    public int RightIndicatorCount = 2;
     public int DoorCount = 4;
     public int SeatCount = 6;
     public int WheelCount = 4;
@@ -21,4 +22,5 @@ public enum Configuration {
     public int CameraCount = 2;
     public int LidarCount = 4;
     public int UltrasonicSensorCount = 8;
+
 }
